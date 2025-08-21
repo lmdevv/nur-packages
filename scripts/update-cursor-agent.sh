@@ -35,11 +35,7 @@ prefetch_sri() {
   local url="$1"
   nix --extra-experimental-features 'nix-command flakes' \
     store prefetch-file --json "$url" \
-    | python3 - "$url" <<'PY'
-import json, sys
-data = json.load(sys.stdin)
-print(data.get('hash') or data['narHash'])
-PY
+    | python3 -c 'import sys, json; d=json.load(sys.stdin); print(d.get("hash") or d["narHash"])'
 }
 
 discover_latest_version() {
@@ -51,7 +47,7 @@ discover_latest_version() {
 
   # Build current cursor-agent and ask it for the latest available version.
   # This mirrors the upstream discovery logic without relying on a public 'latest' endpoint.
-  NIXPKGS_ALLOW_UNFREE=1 nix build -L .#cursor-agent
+  NIXPKGS_ALLOW_UNFREE=1 nix build --impure -L .#cursor-agent
   local out
   if ! out=$(./result/bin/cursor-agent update 2>&1 || true); then
     out=""
