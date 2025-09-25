@@ -2,12 +2,12 @@
   lib,
   stdenv,
   callPackage,
-  vscode-generic,
   fetchurl,
   appimageTools,
   undmg,
   commandLineArgs ? "",
   useVSCodeRipgrep ? stdenv.hostPlatform.isDarwin,
+  pkgs,
 }:
 
 let
@@ -35,7 +35,7 @@ let
 
   source = sources.${hostPlatform.system};
 in
-(callPackage vscode-generic rec {
+(pkgs.callPackage (pkgs.path + "/pkgs/applications/editors/vscode/generic.nix") rec {
   inherit useVSCodeRipgrep;
   commandLineArgs = finalCommandLineArgs;
 
