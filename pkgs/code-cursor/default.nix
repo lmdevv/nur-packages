@@ -1,7 +1,6 @@
 {
   lib,
   stdenv,
-  callPackage,
   fetchurl,
   appimageTools,
   undmg,
@@ -82,10 +81,7 @@ in
     changelog = "https://cursor.com/changelog";
     license = lib.licenses.unfree;
     sourceProvenance = with lib.sourceTypes; [ binaryNativeCode ];
-    maintainers = with lib.maintainers; [
-      aspauldingcode
-      prince213
-    ];
+    maintainers = "lmdevv";
     platforms = [
       "aarch64-linux"
       "x86_64-linux"
