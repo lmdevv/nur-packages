@@ -19,7 +19,8 @@ buildGoModule rec {
 
   meta = with lib; {
     description = "CLI tool for generating AI-powered commit messages";
+    homepage = "https://github.com/lmdevv/commiter";
     license = licenses.mit;
-    maintainers = [ "lmdev" ];
+    maintainers = [ "lmdevv" ];
   };
 }
