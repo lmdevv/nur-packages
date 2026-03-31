@@ -75,6 +75,7 @@ in
 (if hostPlatform.isDarwin then darwin else linux).overrideAttrs (_: {
   passthru = {
     inherit sources;
+    updateScript = ../../scripts/update-t3code.sh;
   };
 
   meta = with lib; {
