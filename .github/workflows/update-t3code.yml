@@ -90,5 +90,5 @@ jobs:
           git push
       - name: Notify NUR
         run: >-
-          curl --fail-with-body --retry 3 --request POST
+          curl --retry 3 --request POST
           "https://nur-update.nix-community.org/update?repo=lmdevv"
